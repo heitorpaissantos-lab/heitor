@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebFinder AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-circle">W</div>
+        <div>
+          <p class="brand-title">WebFinder</p>
+          <p class="brand-subtitle">AI</p>
+        </div>
+      </div>
+      <nav class="nav-menu">
+        <button class="nav-button active" data-panel="search-panel">Pesquisa</button>
+        <button class="nav-button" data-panel="history-panel">Histórico</button>
+        <button class="nav-button" data-panel="config-panel">Configurações</button>
+      </nav>
+      <div class="sidebar-info">
+        <p>Modo escuro, design futurista com neon.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section class="hero-panel" id="search-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">WebFinder AI</p>
+          <h1>Pesquise. Analise. Resuma com IA.</h1>
+          <p>Digite um termo e deixe a inteligência artificial buscar resultados, extrair conteúdo e gerar um resumo completo.</p>
+        </div>
+        <div class="search-box">
+          <label class="input-label">Buscar no WebFinder</label>
+          <div class="input-group">
+            <input id="searchQuery" type="text" placeholder="Digite sua pesquisa..." autocomplete="off" />
+            <button id="searchButton" class="primary-button">Pesquisar</button>
+          </div>
+          <p class="hint-text">Use termos claros para resultados mais precisos.</p>
+        </div>
+        <div class="progress-panel hidden" id="progressPanel">
+          <span class="progress-label">Processando pesquisa...</span>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <span id="processingCount">0 sites processados</span>
+        </div>
+      </section>
+
+      <section class="results-panel hidden" id="resultsPanel">
+        <div class="results-header">
+          <div>
+            <p class="section-title">Resumo gerado</p>
+            <p class="section-subtitle" id="resultsSubtitle">Sua pesquisa foi analisada com IA.</p>
+          </div>
+          <div class="button-group">
+            <button id="copyButton" class="secondary-button">Copiar resumo</button>
+            <button id="downloadPdfButton" class="secondary-button">Exportar PDF</button>
+          </div>
+        </div>
+
+        <div class="result-cards">
+          <article class="summary-card">
+            <h2>Resumo curto</h2>
+            <p id="shortSummary"></p>
+          </article>
+          <article class="summary-card">
+            <h2>Resumo detalhado</h2>
+            <p id="detailedSummary"></p>
+          </article>
+          <article class="summary-card">
+            <h2>Principais fatos</h2>
+            <ul id="factsList"></ul>
+          </article>
+          <article class="summary-card">
+            <h2>Tópicos importantes</h2>
+            <ul id="topicsList"></ul>
+          </article>
+        </div>
+
+        <div class="sources-panel">
+          <div class="sources-header">
+            <p>Fontes analisadas</p>
+            <span id="sourceCount">0 fontes</span>
+          </div>
+          <div id="sourcesList" class="source-list"></div>
+        </div>
+      </section>
+
+      <section class="history-panel hidden" id="history-panel">
+        <div class="section-title">Histórico de pesquisas</div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <section class="config-panel hidden" id="config-panel">
+        <div class="section-title">Configurações de API</div>
+        <div class="config-grid">
+          <div class="field-card">
+            <label>OpenAI API Key</label>
+            <input id="openaiKey" type="password" placeholder="Insira sua chave OpenAI" />
+          </div>
+          <div class="field-card">
+            <label>Google API Key</label>
+            <input id="googleKey" type="password" placeholder="Insira sua chave Google" />
+          </div>
+          <div class="field-card">
+            <label>Google Search Engine ID (CX)</label>
+            <input id="googleCx" type="text" placeholder="Insira seu CX" />
+          </div>
+          <div class="config-actions">
+            <button id="saveConfigButton" class="primary-button">Salvar configurações</button>
+            <button id="testConfigButton" class="secondary-button">Testar conexão</button>
+          </div>
+        </div>
+        <p class="config-note">As chaves não são armazenadas em código-fonte. Use variáveis de ambiente para proteger suas credenciais.</p>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qpwLK6tXRSaWmM7+rbblqG6o5z+FbH+QJiGlA14m4e3I1N0YY28zVYqp4Nmu288J3cqepFGLnUKhqe9nR+4N7g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="app.js"></script>
+</body>
+</html>
